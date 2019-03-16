@@ -111,6 +111,66 @@ namespace SSE_Reporting.Model
             }
         }
 
+        public static Builder getBuilder()
+        {
+            return new Builder();
+        }
+
+        public class Builder
+        {
+            private Employee employee;
+            public Builder()
+            {
+                employee = new Employee();
+            }
+
+            public Builder Id(int id)
+            {
+                employee.Id = id;
+                return this;
+            }
+            public Builder Login(string login)
+            {
+                employee.Login = login;
+                return this;
+            }
+
+            public Builder Password(string password)
+            {
+                employee.Password = password;
+                return this;
+            }
+
+            public Builder TimeOff(double timeOff)
+            {
+                employee.TimeOff = timeOff;
+                return this;
+            }
+
+            public Builder Sickness(double sickness)
+            {
+                employee.Sickness = sickness;
+                return this;
+            }
+
+            public Builder ProjectId(int id)
+            {
+                employee.ProjectId = id;
+                return this;
+            }
+
+            public Builder Role(Role role)
+            {
+                employee.Role = role;
+                return this;
+            }
+
+            public Employee Build()
+            {
+                return employee;
+            }
+        }
+
         public override string ToString()
         {
             return String.Format("{0}", Login);

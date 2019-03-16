@@ -91,6 +91,54 @@ namespace SSE_Reporting.Model
             Employees.Add(employee);
         }
 
+        public static Builder getBuilder()
+        {
+            return new Builder();
+        }
+
+        public class Builder
+        {
+            private Project project;
+            public Builder()
+            {
+                project = new Project();
+            }
+
+            public Builder Id(int id)
+            {
+                project.Id = id;
+                return this;
+            }
+            public Builder Name(string name)
+            {
+                project.Name = name;
+                return this;
+            }
+
+            public Builder Company(string company)
+            {
+                project.Company = company;
+                return this;
+            }
+
+            public Builder Tasks(List<Task> tasks)
+            {
+                project.Tasks = tasks;
+                return this;
+            }
+
+            public Builder Employees(List<Employee> employees)
+            {
+                project.Employees = employees;
+                return this;
+            }
+
+            public Project Build()
+            {
+                return project;
+            }
+        }
+
 
         public override string ToString()
         {

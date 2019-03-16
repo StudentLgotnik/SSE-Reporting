@@ -55,7 +55,7 @@ namespace SSE_Reporting.ViewModel
                         }
                         if (contains == false)
                         {
-                            Reporting  reporting = new Reporting(context ,employeeRepo.save(new Employee(Employee.Login, pass.Password)));
+                            Reporting  reporting = new Reporting(context ,employeeRepo.save(Employee.getBuilder().Login(Employee.Login).Password(pass.Password).Build()));
                             reporting.ShowDialog();
                             //Close();
                         }

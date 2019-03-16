@@ -399,17 +399,16 @@ namespace SSE_Reporting.ViewModel
                             {
                                 currentEmpl.TimeOff = currentEmpl.TimeOff + timeOffFromReport(SelectedReport.StartHours, selectedReport.EndHours);
                             }
-                            
-                            Report report = reportRepo.save(new Report
-                            {
-                                Project = SelectedReport.Project,
-                                Task = SelectedReport.Task,
-                                Activity = SelectedReport.Activity,
-                                EmployeeId = currentEmpl.Id,
-                                StartHours = SelectedReport.StartHours,
-                                EndHours = SelectedReport.EndHours,
-                                Date = selectedDay
-                            });
+
+                            Report report = reportRepo.save(Report.getBuilder().
+                                Project(SelectedReport.Project).
+                                Task(SelectedReport.Task).
+                                Activity(SelectedReport.Activity).
+                                EmployeeId(currentEmpl.Id).
+                                StartHours(SelectedReport.StartHours).
+                                EndHours(SelectedReport.EndHours).
+                                Date(selectedDay).
+                                Build());
                             addToCollection(getWeekIndex(selectedDay), report);
                             SelectedReport = new Report();
                             

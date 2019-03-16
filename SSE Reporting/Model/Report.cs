@@ -119,6 +119,78 @@ namespace SSE_Reporting.Model
             }
         }
 
+        public static Builder getBuilder()
+        {
+            return new Builder();
+        }
+
+        public class Builder
+        {
+            private Report report;
+            public Builder()
+            {
+                report = new Report();
+            }
+
+            public Builder Id(int id)
+            {
+                report.Id = id;
+                return this;
+            }
+            public Builder Project(Project project)
+            {
+                report.Project = project;
+                return this;
+            }
+
+            public Builder Task(Task task)
+            {
+                report.Task = task;
+                return this;
+            }
+
+            public Builder EmployeeId(int id)
+            {
+                report.EmployeeId = id;
+                return this;
+            }
+
+            public Builder Activity(Activity activiti)
+            {
+                report.Activity = activiti;
+                return this;
+            }
+
+            public Builder StartHours(TimeSpan timeSpan)
+            {
+                report.StartHours = timeSpan;
+                return this;
+            }
+
+            public Builder EndHours(TimeSpan timeSpan)
+            {
+                report.EndHours = timeSpan;
+                return this;
+            }
+
+            public Builder Date(DateTime date)
+            {
+                report.Date = date;
+                return this;
+            }
+
+            public Builder Commect(string comment)
+            {
+                report.Commect = comment;
+                return this;
+            }
+
+            public Report Build()
+            {
+                return report;
+            }
+        }
+
         public override string ToString()
         {
             IRepository<Employee> ir = EmployeeImpl.getInstance(new DBContext());

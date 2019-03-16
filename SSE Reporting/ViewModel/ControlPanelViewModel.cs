@@ -110,7 +110,7 @@ namespace SSE_Reporting.ViewModel
                 return addAdmin ??
                     (addAdmin = new RelayCommand(obj =>
                     {
-                        Employee admin = employeeRepo.save(new Admin { Login = SelectedAdmin.Login, Password = SelectedAdmin.Password });
+                        Employee admin = employeeRepo.save(Admin.getBuilder().Login(SelectedAdmin.Login).Password(SelectedAdmin.Password).Build());
                         Admins.Add(admin);
                         SelectedAdmin = new Employee();
                     }));
@@ -141,7 +141,7 @@ namespace SSE_Reporting.ViewModel
                 return addEmployee ??
                     (addEmployee = new RelayCommand(obj =>
                     {
-                        Employee employee = employeeRepo.save(new Employee { Login = SelectedEmployee.Login, Password = SelectedEmployee.Password });
+                        Employee employee = employeeRepo.save(Employee.getBuilder().Login(SelectedEmployee.Login).Password(SelectedEmployee.Password).Build());
                         Employees.Add(employee);
                         SelectedEmployee = new Employee();
                     }));
@@ -263,7 +263,7 @@ namespace SSE_Reporting.ViewModel
                     (addTask = new RelayCommand(obj =>
                     {
 
-                        Task task = taskRepo.save(new Task { Name = selectedTask.Name, Activity = selectedTask.Activity });
+                        Task task = taskRepo.save(Task.getBuilder().Name(selectedTask.Name).Activity(selectedTask.Activity).Build());
                         Tasks.Add(task);
                         SelectedTask = new Task();
                     }));
@@ -316,7 +316,7 @@ namespace SSE_Reporting.ViewModel
                     (addProject = new RelayCommand(obj =>
                     {
                                            
-                        Project project = projectRepo.save(new Project{ Company = selectedProject.Company, Name = selectedProject.Name });
+                        Project project = projectRepo.save(Project.getBuilder().Company(selectedProject.Company).Name(selectedProject.Name).Build());
                         Projects.Add(project);
                         SelectedProject = project;
                     }));

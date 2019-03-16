@@ -67,6 +67,49 @@ namespace SSE_Reporting.Model
             }
         }
 
+        public static Builder getBuilder()
+        {
+            return new Builder();
+        }
+
+        public class Builder
+        {
+            private Task task;
+            public Builder()
+            {
+                task = new Task();
+            }
+
+            public Builder Id(int id)
+            {
+                task.Id = id;
+                return this;
+            }
+
+            public Builder Name(string name)
+            {
+                task.Name = name;
+                return this;
+            }
+
+            public Builder Activity(Activity activity)
+            {
+                task.Activity = activity;
+                return this;
+            }
+
+            public Builder ProjectId(int id)
+            {
+                task.ProjectId = id;
+                return this;
+            }
+
+            public Task Build()
+            {
+                return task;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format("{0}  {1}", Name, Activity);
