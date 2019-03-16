@@ -9,11 +9,19 @@ namespace SSE_Reporting.Dao.Impl
 {
     class TaskImpl : IRepository<Task>
     {
+        private static TaskImpl instance;
         private DBContext _dbContext;
 
-        public TaskImpl(DBContext context)
+        private TaskImpl(DBContext context)
         {
             _dbContext = context;
+        }
+
+        public static TaskImpl getInstance(DBContext context)
+        {
+            if (instance == null)
+                instance = new TaskImpl(context);
+            return instance;
         }
 
         public Task delete(Task entity)

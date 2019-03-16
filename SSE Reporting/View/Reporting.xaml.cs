@@ -31,7 +31,7 @@ namespace SSE_Reporting.View
             DataContext = rvm;
             if (empl.Role == Role.User)
             {
-                //AdminBtn.IsHitTestVisible = false;
+                AdminBtn.IsHitTestVisible = false;
             }
             if (rvm.Close == null)
                 rvm.Close = new Action(this.Close);

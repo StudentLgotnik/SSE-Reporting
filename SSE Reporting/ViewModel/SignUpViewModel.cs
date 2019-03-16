@@ -65,7 +65,7 @@ namespace SSE_Reporting.ViewModel
 
         public SignUpViewModel(DBContext context)
         {
-            employeeRepo = new EmployeeImpl(context);
+            employeeRepo = EmployeeImpl.getInstance(context);
             this.context = context;
             Employee = new Employee();
         }

@@ -403,11 +403,11 @@ namespace SSE_Reporting.ViewModel
         public ControlPanelViewModel(DBContext context, Employee empl)
         {
             dbContext = context;
-            employeeRepo = new EmployeeImpl(dbContext);
+            employeeRepo = EmployeeImpl.getInstance(dbContext);
             //adminRepo = new AdminImpl(dbContext);
-            projectRepo = new ProjectImpl(dbContext);
-            reportRepo = new ReportImpl(dbContext);
-            taskRepo = new TaskImpl(dbContext);
+            projectRepo = ProjectImpl.getInstance(dbContext);
+            reportRepo = ReportImpl.getInstance(dbContext);
+            taskRepo = TaskImpl.getInstance(dbContext);
 
             Employees = new ObservableCollection<Employee>(employeeRepo.getAll().Where(user => user.Role == Role.User));
             Admins = new ObservableCollection<Employee>(employeeRepo.getAll().Where(user => user.Role == Role.Admin));

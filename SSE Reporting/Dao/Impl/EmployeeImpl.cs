@@ -10,11 +10,19 @@ namespace SSE_Reporting.Dao.Impl
 {
     class EmployeeImpl : IRepository<Employee>
     {
+        private static EmployeeImpl instance;
         private DBContext _dbContext;
 
-        public EmployeeImpl(DBContext context)
+        private EmployeeImpl(DBContext context)
         {
             _dbContext = context;
+        }
+
+        public static EmployeeImpl getInstance(DBContext context)
+        {
+            if (instance == null)
+                instance = new EmployeeImpl(context);
+            return instance;
         }
 
         public Employee delete(Employee entity)

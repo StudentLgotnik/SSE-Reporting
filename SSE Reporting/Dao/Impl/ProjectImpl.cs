@@ -10,11 +10,19 @@ namespace SSE_Reporting.Dao.Impl
 {
     class ProjectImpl : IRepository<Project>
     {
+        private static ProjectImpl instance;
         private DBContext _dbContext;
 
-        public ProjectImpl(DBContext context)
+        private ProjectImpl(DBContext context)
         {
             _dbContext = context;
+        }
+
+        public static ProjectImpl getInstance(DBContext context)
+        {
+            if (instance == null)
+                instance = new ProjectImpl(context);
+            return instance;
         }
 
         public Project delete(Project entity)

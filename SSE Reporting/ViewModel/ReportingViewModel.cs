@@ -506,10 +506,10 @@ namespace SSE_Reporting.ViewModel
         public ReportingViewModel(DBContext context, Employee empl)
         {
             dbContext = context;
-            employeeRepo = new EmployeeImpl(dbContext);
-            projectRepo = new ProjectImpl(dbContext);
-            reportRepo = new ReportImpl(dbContext);
-            taskRepo = new TaskImpl(dbContext);
+            employeeRepo = EmployeeImpl.getInstance(dbContext);
+            projectRepo = ProjectImpl.getInstance(dbContext);
+            reportRepo = ReportImpl.getInstance(dbContext);
+            taskRepo = TaskImpl.getInstance(dbContext);
             currentEmpl = empl;
             selectedDay = DateTime.Now.Date;
             setWeekCollection(selectedDay);

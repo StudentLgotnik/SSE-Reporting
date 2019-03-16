@@ -10,11 +10,19 @@ namespace SSE_Reporting.Dao.Impl
 {
     class ReportImpl : IRepository<Report>
     {
+        private static ReportImpl instance;
         private DBContext _dbContext;
 
-        public ReportImpl(DBContext context)
+        private ReportImpl(DBContext context)
         {
             _dbContext = context;
+        }
+
+        public static ReportImpl getInstance(DBContext context)
+        {
+            if (instance == null)
+                instance = new ReportImpl(context);
+            return instance;
         }
 
         public Report delete(Report entity)

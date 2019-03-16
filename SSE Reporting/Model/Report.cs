@@ -121,7 +121,7 @@ namespace SSE_Reporting.Model
 
         public override string ToString()
         {
-            IRepository<Employee> ir = new EmployeeImpl(new DBContext());
+            IRepository<Employee> ir = EmployeeImpl.getInstance(new DBContext());
             Employee empl = ir.get((int)EmployeeId);
             return String.Format("{0} ({1})   {2}   {3}[{4} - {5}]", Project, empl, Task, Date.ToString("dd/MM/yyyy"), StartHours, EndHours);
         }

@@ -11,12 +11,19 @@ namespace SSE_Reporting.Dao.Impl
 {
     class AdminImpl : IRepository<Admin>
     {
-
+        private static AdminImpl instance;
         private DBContext _dbContext;
 
-        public AdminImpl(DBContext context)
+        private AdminImpl(DBContext context)
         {
             _dbContext = context;
+        }
+
+        public static AdminImpl getInstance(DBContext context)
+        {
+            if (instance == null)
+                instance = new AdminImpl(context);
+            return instance;
         }
 
         public Admin delete(Admin entity)

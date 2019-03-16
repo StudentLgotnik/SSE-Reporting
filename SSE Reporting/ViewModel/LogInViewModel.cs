@@ -91,7 +91,7 @@ namespace SSE_Reporting.ViewModel
         public LogInViewModel(DBContext context)
         {
             this.context = context;
-            employeeRepo = new EmployeeImpl(context);
+            employeeRepo = EmployeeImpl.getInstance(context);
             //Employees = new ObservableCollection<Employee>(employeeRepo.getAll());
             Employee = new Employee();
             
