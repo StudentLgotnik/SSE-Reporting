@@ -76,6 +76,7 @@
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Dao\Context\DBContext.cs" />
+    <Compile Include="Model\Iterator\IEnumerator.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Report.cs" />
     <Compile Include="Model\Role.cs" />

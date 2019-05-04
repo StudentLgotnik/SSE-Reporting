@@ -139,6 +139,14 @@ namespace SSE_Reporting.Model
             }
         }
 
+        //public IEnumerator GetEnumerator()
+        //{
+        //    foreach (Task task in tasks)
+        //    {
+        //        yield return tasks.GetEnumerator();
+        //    }
+        //}
+
 
         public override string ToString()
         {
