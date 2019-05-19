@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SSE_Reporting.Model.Positions;
 
 namespace SSE_Reporting.Model
 {
@@ -18,6 +19,8 @@ namespace SSE_Reporting.Model
         private double sickness;
         private int? project_id;
         private Role role;
+		private int? position_id;
+		private Position position;
 
         public Employee()
         {
@@ -28,6 +31,7 @@ namespace SSE_Reporting.Model
             sickness = 0;
             project_id = null;
             role = Role.User;
+			position = null;
         }
 
         public Employee(string login, string password)
@@ -111,7 +115,27 @@ namespace SSE_Reporting.Model
             }
         }
 
-        public static Builder getBuilder()
+        public int? PositionId
+        {
+            get { return position_id; }
+            set
+            {
+                position_id = value;
+                OnPropertyChanged("Position_ID");
+            }
+        }
+
+        public Position Position
+		{
+			get { return position; }
+			set
+			{
+				position = value;
+				OnPropertyChanged("Position");
+			}
+		}
+
+		public static Builder getBuilder()
         {
             return new Builder();
         }
@@ -162,6 +186,18 @@ namespace SSE_Reporting.Model
             public Builder Role(Role role)
             {
                 employee.Role = role;
+                return this;
+            }
+
+			public Builder Position(Position position)
+			{
+				employee.Position = position;
+				return this;
+			}
+
+            public Builder PositionId(int? positionId)
+            {
+                employee.PositionId = positionId;
                 return this;
             }
 

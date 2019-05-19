@@ -64,23 +64,47 @@
     </ApplicationDefinition>
     <Compile Include="Dao\Impl\AdminImpl.cs" />
     <Compile Include="Dao\Impl\EmployeeImpl.cs" />
+    <Compile Include="Dao\Impl\LevelImpl.cs" />
+    <Compile Include="Dao\Impl\PositionImpl.cs" />
     <Compile Include="Dao\Impl\ProjectImpl.cs" />
     <Compile Include="Dao\Impl\ReportImpl.cs" />
     <Compile Include="Dao\Impl\TaskImpl.cs" />
     <Compile Include="Dao\IRepository.cs" />
-    <Compile Include="Migrations\201811241104109_init.cs" />
-    <Compile Include="Migrations\201811241104109_init.Designer.cs">
-      <DependentUpon>201811241104109_init.cs</DependentUpon>
+    <Compile Include="Migrations\201905111821291_init.cs" />
+    <Compile Include="Migrations\201905111821291_init.Designer.cs">
+      <DependentUpon>201905111821291_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905121115405_levelid added to position class.cs" />
+    <Compile Include="Migrations\201905121115405_levelid added to position class.Designer.cs">
+      <DependentUpon>201905121115405_levelid added to position class.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Dao\Context\DBContext.cs" />
+    <Compile Include="Model\Employments\Employment.cs" />
+    <Compile Include="Model\Employments\OfficialEmployment.cs" />
+    <Compile Include="Model\Employments\SelfEmployment.cs" />
     <Compile Include="Model\Iterator\IEnumerator.cs" />
+    <Compile Include="Model\Positions\Developer.cs" />
+    <Compile Include="Model\Positions\HumanResources.cs" />
+    <Compile Include="Model\Positions\Levels\Junior.cs" />
+    <Compile Include="Model\Positions\Levels\Level.cs" />
+    <Compile Include="Model\Positions\Levels\Middle.cs" />
+    <Compile Include="Model\Positions\Levels\Senior.cs" />
+    <Compile Include="Model\Positions\Position.cs" />
+    <Compile Include="Model\Positions\ProjectManager.cs" />
+    <Compile Include="Model\Positions\Tester.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Report.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\Task.cs" />
+    <Compile Include="Services\IncomeMaonthStrategy.cs" />
+    <Compile Include="Services\MonthStrategy.cs" />
+    <Compile Include="Services\PayStrategy.cs" />
+    <Compile Include="Services\QuarterStrategy.cs" />
+    <Compile Include="Services\SalaryManager.cs" />
+    <Compile Include="Services\YearStrategy.cs" />
     <Compile Include="View\Slider.xaml.cs">
       <DependentUpon>Slider.xaml</DependentUpon>
     </Compile>
@@ -157,8 +181,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201811241104109_init.resx">
-      <DependentUpon>201811241104109_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905111821291_init.resx">
+      <DependentUpon>201905111821291_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905121115405_levelid added to position class.resx">
+      <DependentUpon>201905121115405_levelid added to position class.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

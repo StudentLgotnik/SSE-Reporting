@@ -9,6 +9,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
+using SSE_Reporting.Model.Positions;
+using SSE_Reporting.Model.Positions.Levels;
 
 namespace SSE_Reporting.ViewModel
 {
@@ -22,12 +24,15 @@ namespace SSE_Reporting.ViewModel
         private int projectSelectedIndex;
         private Task selectedTask;
         private int taskSelectedIndex;
+        private Position employeeSelectedPosition;
         private ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
         private ObservableCollection<Employee> admins = new ObservableCollection<Employee>();
         private ObservableCollection<Project> projects = new ObservableCollection<Project>();
         private ObservableCollection<Task> tasks = new ObservableCollection<Task>();
+		private ObservableCollection<Position> positions = new ObservableCollection<Position>();
+		private ObservableCollection<Level> levels = new ObservableCollection<Level>();
 
-        public ObservableCollection<Employee> Employees {
+		public ObservableCollection<Employee> Employees {
             get { return employees; }
             set {
                 employees = value;
@@ -102,6 +107,8 @@ namespace SSE_Reporting.ViewModel
         IRepository<Project> projectRepo; 
         IRepository<Report> reportRepo; 
         IRepository<Task> taskRepo;
+        IRepository<Position> positionRepo;
+        IRepository<Level> levelRepo;
 
         public RelayCommand AddAdmin
         {
@@ -110,7 +117,7 @@ namespace SSE_Reporting.ViewModel
                 return addAdmin ??
                     (addAdmin = new RelayCommand(obj =>
                     {
-                        Employee admin = employeeRepo.save(Admin.getBuilder().Login(SelectedAdmin.Login).Password(SelectedAdmin.Password).Build());
+                        Employee admin = employeeRepo.save(Admin.getBuilder().Login(SelectedAdmin.Login).Password(SelectedAdmin.Password).Role(Role.Admin).Build());
                         Admins.Add(admin);
                         SelectedAdmin = new Employee();
                     }));
@@ -141,7 +148,14 @@ namespace SSE_Reporting.ViewModel
                 return addEmployee ??
                     (addEmployee = new RelayCommand(obj =>
                     {
-                        Employee employee = employeeRepo.save(Employee.getBuilder().Login(SelectedEmployee.Login).Password(SelectedEmployee.Password).Build());
+                        Position p = null;
+                        if (SelectedEmployee.Position != null)
+                        {
+                            p = positionRepo.getAll().FirstOrDefault(position => position.Level == SelectedEmployee.Position.Level && position.Name == SelectedEmployee.Position.Name);
+                       
+                        }
+                        SelectedEmployee.PositionId = 20;
+                        Employee employee = employeeRepo.save(Employee.getBuilder().Login(SelectedEmployee.Login).Password(SelectedEmployee.Password).Position(p == null ? SelectedEmployee.Position : p).PositionId(SelectedEmployee.PositionId).Build());
                         Employees.Add(employee);
                         SelectedEmployee = new Employee();
                     }));
@@ -400,7 +414,29 @@ namespace SSE_Reporting.ViewModel
             }
         }
 
-        public ControlPanelViewModel(DBContext context, Employee empl)
+        public Position EmployeeSelectedPosition
+        {
+            get { return employeeSelectedPosition; }
+            set
+            {
+                employeeSelectedPosition = value;
+                OnPropertyChanged("SelectedEmployee");
+            }
+        }
+
+        public ObservableCollection<Position> Positions
+		{
+			get { return positions; }
+			set { positions = value; }
+		}
+
+		public ObservableCollection<Level> Levels
+		{
+			get { return levels; }
+			set { levels = value; }
+		}
+
+		public ControlPanelViewModel(DBContext context, Employee empl)
         {
             dbContext = context;
             employeeRepo = EmployeeImpl.getInstance(dbContext);
@@ -408,11 +444,22 @@ namespace SSE_Reporting.ViewModel
             projectRepo = ProjectImpl.getInstance(dbContext);
             reportRepo = ReportImpl.getInstance(dbContext);
             taskRepo = TaskImpl.getInstance(dbContext);
+			positionRepo = PositionImpl.getInstance(dbContext);
+			levelRepo = LevelImpl.getInstance(dbContext);
 
             Employees = new ObservableCollection<Employee>(employeeRepo.getAll().Where(user => user.Role == Role.User));
             Admins = new ObservableCollection<Employee>(employeeRepo.getAll().Where(user => user.Role == Role.Admin));
+            foreach (Employee employee in Employees)
+            {
+                if (employee.PositionId != null)
+                {
+                    employee.Position = positionRepo.get((int)employee.PositionId);
+                }
+            }
             Projects = projectRepo.getAll();
             Tasks = taskRepo.getAll();
+			Levels = levelRepo.getAll();
+			Positions = new ObservableCollection<Position>(new List<Position>( new Position[]{ new Developer(), new HumanResources(), new ProjectManager(), new Tester()}));
 
             EmployeeSelectedIndex = -1;
             AdminSelectedIndex = -1;

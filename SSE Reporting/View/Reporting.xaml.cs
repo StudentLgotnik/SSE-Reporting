@@ -29,12 +29,12 @@ namespace SSE_Reporting.View
 
             ReportingViewModel rvm = new ReportingViewModel(context,empl);
             DataContext = rvm;
-            if (empl.Role == Role.User)
-            {
-                AdminBtn.IsHitTestVisible = false;
-            }
-            if (rvm.Close == null)
-                rvm.Close = new Action(this.Close);
+            //if (empl.Role == Role.User)
+            //{
+            //    AdminBtn.IsHitTestVisible = false;
+            //}
+            //if (rvm.Close == null)
+            //    rvm.Close = new Action(this.Close);
         }
 
 

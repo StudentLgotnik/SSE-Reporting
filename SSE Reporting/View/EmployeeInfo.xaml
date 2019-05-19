@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SSE_Reporting.View"
         mc:Ignorable="d"
-        Title="Info" Height="300" Width="400">
+        Title="Info" Height="450" Width="400">
     <Window.Resources>
         <Style x:Key="LblStyle">
             <Setter Property="Control.Foreground" Value="White" />
@@ -13,7 +13,7 @@
     </Window.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <Canvas>
-            <Rectangle Fill="#0b77e3"   Width="140" Height="269"/>
+            <Rectangle Fill="#0b77e3"   Width="140" Height="420"/>
         </Canvas>
         <Label HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Content="Sickness:" Width="120" FontSize="20" Height="40"  Style="{StaticResource LblStyle}"/>
         <Label HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Content="Vacayion:" FontSize="20" Width="120"  Style="{StaticResource LblStyle}"/>
@@ -21,5 +21,12 @@
         <TextBlock HorizontalAlignment="Left" Margin="160,80,0,0" VerticalAlignment="Top" Width="222" Height="40" Text="{Binding Path=SelectedEmployee.TimeOff}" TextWrapping="Wrap" FontSize="20" Padding="5"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Employee:" VerticalAlignment="Top" Margin="20,20,0,0" Width="120" Height="40" FontSize="20" TextAlignment="Left" Padding="5"  Style="{StaticResource LblStyle}"/>
         <TextBlock HorizontalAlignment="Left" Margin="160,20,0,0" VerticalAlignment="Top" Width="222" Height="40" Text="{Binding Path=Employee}" TextWrapping="Wrap" FontSize="20" Padding="5"/>
+        <Label HorizontalAlignment="Left" Margin="20,210,0,0" VerticalAlignment="Top" Content="Salary:" Width="120" FontSize="20" Height="40"  Style="{StaticResource LblStyle}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="160,210,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Height="40" Width="95" FontSize="20" TextAlignment="Left" Padding="5" Text="{Binding Salary}"/>
+        <ComboBox ItemsSource="{Binding PayStrategys}" SelectedItem="{Binding PayStrategy}" VerticalAlignment="Top" FontSize="16" Canvas.Left="250" Canvas.Top="216" Margin="272,215,11.6,0" Height="30"/>
+        <Label HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" Content="Position:" Width="120" FontSize="20" Height="40"  Style="{StaticResource LblStyle}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="160,280,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Height="40" Width="222" FontSize="20" TextAlignment="Left" Padding="5" Text="{Binding Path=SelectedEmployee.Position}"/>
+        <Label HorizontalAlignment="Left" Margin="20, 350,0,0" VerticalAlignment="Top" Content="Level:" Width="120" FontSize="20" Height="40"  Style="{StaticResource LblStyle}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="160,350,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Height="40" Width="222" FontSize="20" TextAlignment="Left" Padding="5" Text="{Binding Path=SelectedEmployee.Position.Level}"/>
     </Grid>
 </Window>
